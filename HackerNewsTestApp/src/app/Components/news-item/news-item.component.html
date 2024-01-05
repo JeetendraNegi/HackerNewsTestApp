@@ -1,0 +1,8 @@
+
+<div class="card cardStyle">
+    <div class="card-body">
+        <h5 class="card-title" title={{newsItem.title}}>{{newsItem.title.length > 28? newsItem.title.substring(0, 28) + "...": newsItem.title }}</h5>
+        <p class="card-text">News By : {{newsItem.by}}</p>
+        <a href={{newsItem.url}} *ngIf="newsItem.url" target="_blank" class="btn btn-primary">Read more...</a>
+      </div>
+</div>

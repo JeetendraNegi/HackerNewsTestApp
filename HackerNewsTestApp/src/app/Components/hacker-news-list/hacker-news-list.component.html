@@ -1,0 +1,50 @@
+<div class="div-class">
+    <div class="col-md-12" style="float: right;">
+        <input type="text" class="search" placeholder="Search by title" (keyup)="filterResults(filter.value)" #filter>
+        <nav aria-label="..." style="margin-left: 1%;">
+            <ul class="pagination">
+                <li class="page-item" *ngIf="currentPage != 1">
+                    <button class="page-link" (click)="pagenation('previous')" tabindex="-1">Previous</button>
+                </li>
+                <li class="page-item" [ngClass]="{'active': currentPage == 1}"><button class="page-link"
+                        (click)="pagenation(1)">1</button></li>
+                <li class="page-item" [ngClass]="{'active': currentPage == 2}" *ngIf="totalPages > 1">
+                    <button class="page-link" (click)="pagenation(2)">2</button>
+                </li>
+                <li class="page-item"
+                    [ngClass]="{'active': (currentPage == 3 || currentPage >3 || currentPage == totalPages -2) && (currentPage < totalPages -1)}"
+                    *ngIf="totalPages > 2">
+                    <button class="page-link" (click)="pagenation(3)">{{three}}</button>
+                </li>
+                <li class="page-item disabled"><a class="page-link" href="#">....</a></li>
+                <li class="page-item" [ngClass]="{'active': currentPage == totalPages-1}" *ngIf="totalPages > 3">
+                    <button class="page-link" (click)="pagenation((totalPages - 1))">{{(totalPages - 1)}}</button>
+                </li>
+                <li class="page-item" [ngClass]="{'active': currentPage == totalPages}" *ngIf="totalPages > 4">
+                    <button class="page-link" (click)="pagenation(totalPages)">{{totalPages}}</button>
+                </li>
+                <li class="page-item" *ngIf="totalPages != currentPage">
+                    <button class="page-link" (click)="pagenation('next')">Next</button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<hr>
+<div class="container" *ngIf="myData.length > 0, else loading">
+    <div class="row">
+        <ng-container *ngFor="let item of myData">
+            <div class="col-md-4" *ngIf="item.url">
+                <app-news-item [newsItem]="item"></app-news-item>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</ng-template>

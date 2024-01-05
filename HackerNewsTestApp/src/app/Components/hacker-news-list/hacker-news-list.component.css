@@ -1,0 +1,18 @@
+
+.div-class {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Or any other value */
+  }
+
+  .active {
+    background-color: blue;
+    color: white;
+  }
+
+  .search{
+    float: right;
+    margin-right: 2%;
+  }
